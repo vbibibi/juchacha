@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="viewport"
+		content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>聚查查</title>
+	<link rel="shortcut icon " type="images/x-icon" href="assets/favicon.ico">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="assets/iconfont/iconfont.css">
+	<link rel="stylesheet" href="assets/css/datepicker.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/page/list/list.css">
+	<style>
+		.page-wrapper.on .pageListBox{display:none; }
+		.page-wrapper.on .pageListBox{vertical-align: middle; }		
+		.pageListBox{margin-top: 50px;}
+		.pageListBox .pageListSize{height:38px;margin:20px 20px 20px 0;position:relative;}
+		.pageListBox .pageListSize:after{content: "";
+		    width: 10px;
+		    height: 6px;
+		    background: url(./assets/images/next.png) center no-repeat;
+		    position: absolute;
+		    right: 12px;
+		    top: 16px;
+		    pointer-events: none;}
+		.pageListBox .pageListSize select {width:100px;height:36px;padding-left:15px;}
+		#pageList {float:left;}
+
+		#pageList ul li span {
+			cursor: pointer;
+		}
+
+		#pageList ul li.disabled {
+			pointer-events: none;
+		}
+
+		#pageList ul li.active {
+			pointer-events: none;
+		}
+
+		#pageList ul li.active span {
+			background-color: #1890FF;
+			border-color: #1890FF;
+		}
+
+		.pagination>li>a,
+		.pagination>li>span {
+			padding: 8px 14px;
+			color: #1890FF;
+		}
+		.pageListTotal{height:40px;line-height:40px;margin:20px 0;}
+	</style>
+</head>
+
+<body>
+	<div class="loadingBox">
+		<div class="loading_bgimg_animation"><span></span></div>
+	</div>
+	<div class="page-wrapper">
+
+		<!-- 顶部固定导航栏 -->
+		<nav class="navbar navbar-default nav-container">
+			<div class="nav-inner-block container-fluid clearfix">
+				<div class="navbar-header fl">
+					<a class="navbar-brand" href="index.html">
+						<img alt="Brand" src="assets/images/logo.png">
+						<span>聚查查</span>
+					</a>
+				</div>
+				<div class="nav-r-section fr">
+					<ul class="clearfix fl" id="top-tab">
+						<li class="active"><a href="javascript:;">外贸公司</a></li>
+						<li><a href="javascript:;">海关数据</a></li>
+						<li><a href="javascript:;">社媒搜索</a></li>
+						<li><a href="javascript:;">服务&价格</a></li>
+						<li><a href="javascript:;">外贸知识</a></li>
+						<li><a href="javascript:;">个人中心</a></li>
+					</ul>
+					<div class="login fl">
+						<a href="#" class="btn btn-primary mr10">登录</a>
+						<a href="#" class="btn btn-default">注册</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<!-- 页面主体 -->
+		<div class="content-wrapper">
+			<main>
+				<div class="list-page-container plr30 pb20 content">
+					<form id="listForm">
+						<div class="keyword-search-box">
+							<div class="keyword-search mb5">
+								<input type="text"  id="searchInput" name="Name" placeholder="请输入关键词" >
+								<!-- <button type="submit" class="search-button btn">搜索</button> -->
+								<a href="javascript:;"  class="search-button btn" >搜索</a>
+							</div>
+							<div class="correlation clearfix mt15">
+								<!-- <a href="javascript:;" class="item active">企业名</a>
+								<a href="javascript:;" class="item">法人</a>
+								<a href="javascript:;" class="item">联系人</a>
+								<a href="javascript:;" class="item">地址/电话</a>
+								<a href="javascript:;" class="item">经营范围</a> -->
+							</div>
+						</div>
+						
+
+						<div class="filter_title mb20">筛选条件</div>
+						<div class="precise-query-wrap">
+							<div class="precise-query-condition">
+							<!-- 国家： -->
+								<div class="country-list list-wrapper" data-tit="所在地区">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">所在地区</h6>
+									</div>
+									<div class="list-center pl10 clearfix">
+										<div class="item-inner clearfix fl">
+											<label class="checkAll fl">
+												<input type="checkbox" value="" class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+										</div>	
+										<div class="province_box select_li" >
+										    <select class="form-control" id="province">
+										      <option value="省" class="option1 op0">省</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="city_box select_li">
+										    <select class="form-control" id="city">
+										      <option  value="市" class="option1 op0">市</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="area_box select_li" >
+										    <select class="form-control" id="area">
+										      <option  value="区" class="option1 op0">区</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+									</div>
+									<div class="list-right expend-all" data-toggle="modal" data-target="#city_modal">多选</div>
+								</div>
+								<!-- 所属行业： -->
+								<div class="industry-list list-wrapper" data-tit="所属行业">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">所属行业</h6>
+									</div>
+									<div class="list-center pl10 clearfix">
+										<div class="item-inner clearfix fl">
+											<label class="checkAll fl">
+												<input type="checkbox" value=""  class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+										</div>
+										<div class="industry1_box select_li">
+										    <select class="form-control" id="industry1">
+										      <option value="一级行业" class="option1 op0">一级行业</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="industry2_box select_li">
+										    <select class="form-control" id="industry2">
+										      <option value="二级行业" class="option1 op0">二级行业</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										
+									</div>
+									<div class="list-right expend-all" data-toggle="modal" data-target="#industry_modal">多选</div>
+								</div>
+								<!-- 营业状态： -->
+								<div class="shortStatus-list list-wrapper" data-tit="营业状态">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">营业状态</h6>
+									</div>
+									<div class="list-center pl10">
+										<div class="item-inner clearfix">
+											<label class="checkAll fl">
+												<input type="checkbox" value="" class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+										</div>	
+									</div>
+								</div>
+								<!-- 联系方式： -->
+								<div class="contacts-list list-wrapper" data-tit="联系方式">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">联系方式</h6>
+									</div>
+									<div class="list-center pl10">
+										<div class="item-inner clearfix">
+											<label class="checkAll fl">
+												<input type="checkbox" value=""  class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+										</div>	
+									</div>
+								</div>
+								
+								<!-- 成立年限： -->
+								<div class="setup-list list-wrapper" data-tit="成立年限">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">成立年限</h6>
+									</div>
+									<div class="list-center pl10">
+										<div class="item-inner clearfix">
+											<label class="checkAll fl">
+												<input type="checkbox" value=""  class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+										</div>
+										
+									</div>
+								</div>
+								<!-- 注册资本： -->
+								<div class="registered-capital-list list-wrapper" data-tit="注册资本">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">注册资本</h6>
+									</div>
+									<div class="list-center pl10">
+										<div class="item-inner clearfix">
+											<label class="checkAll fl">
+												<input type="checkbox" value=""  class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+										</div>
+									</div>
+								</div>
+								<!-- 企业来源： -->
+								<div class="seach-company-list list-wrapper" data-tit="企业来源">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">企业来源</h6>
+									</div>
+									<div class="list-center pl10">
+										<div class="item-inner clearfix">
+											<label class="checkAll fl">
+												<input type="checkbox" value=""  class="buxian checkInput" checked>
+												<span>不限</span>
+											</label>
+											<div class="search_qiye">
+												<label class="fl search_qiye_box">
+													<input type="text" value="" placeholder="搜索线索企业所在的目标站名称" id="search_company" class="pl10 mt5">
+													<span class="iconfont">&#xe637;</span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="top-search-list list-wrapper">
+									<div class="list-left text-right pr15">
+										<h6 class="mt10">高级筛选</h6>
+									</div>
+									<div class="list-center pl10 clearfix">
+										<div class="econKind select_li">
+										    <select class="form-control" id="EconKind">
+										      <option class="op0" >企业类型</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="recruitment select_li">
+										    <select class="form-control" id="Recruitment">
+										      <option class="op0">招聘情况</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="onlineMarket select_li">
+										    <select class="form-control" id="OnlineMarket">
+										      <option class="op0">网络推广</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="domain select_li">
+										    <select class="form-control" id="Domain">
+										      <option class="op0">网络域名</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="brand select_li">
+										    <select class="form-control" id="Brand">
+										      <option class="op0">商标</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="patent select_li">
+										    <select class="form-control" id="Patent">
+										      <option class="op0">专利</option>
+											</select>
+											<span class=" iconfontNext"></span>
+										</div>
+										<div class="bid select_li">
+										    <select class="form-control" id="Bid">
+										      <option class="op0">招投标</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="tencent select_li ">
+										    <select class="form-control" id="Tencent">
+										      <option class="op0">公众号</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<div class="Foreign select_li">
+										    <select class="form-control" id="Foreign">
+										      <option class="op0">外贸网站</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div>
+										<!-- <div class="Enterprise select_li ">
+										    <select class="form-control" id="Enterprise">
+										      <option class="op0">企业信息</option>
+										    </select>
+										    <span class=" iconfontNext"></span>
+										</div> -->
+									</div>
+								</div>
+
+								<div class="list-wrapper retract-list tc mt20">
+									<a href="javascript:;">
+										<span>收起</span>
+										<span class='iconfont retract-next'>&#xe62e;</span>
+										<span class='iconfont retract-prev'>&#xe62d;</span>
+									</a>
+									
+								</div>
+							</div>
+							<!-- 排序 -->
+							<section class="search-item-wrapper pt20">
+								<div class="list-wrapper">
+									<div class="list-left text-right pr15">
+										<h6 class="mt15">已选择：</h6>
+									</div>
+									<div class="list-center pl15 clearfix">
+										<div class="item-inner fl selected-wrap">
+										</div>
+										<span class="clear-selected fl mt10">清除筛选</span>
+									</div>
+								</div>
+								<div class="sort-list list-wrapper">
+									<div class="list-left text-right pr15">
+										<h6 class="mt15">排序：</h6>
+									</div>
+									<div class="list-center pl15 pr10">
+										<div class="item-container clearfix">
+											<div class="fl left-block">
+												<ul class="sort-item active-list">
+													<li>
+														<label>
+															<input type="checkbox" class="sort-check hide"
+																prop="RegistCapi" value="" checked>
+															<span>注册资本</span>
+														</label>
+													</li>
+													<li>
+														<label>
+															<input type="checkbox" class="sort-check hide"
+																prop="StartDate" value="">
+															<span>成立时间</span>
+														</label>
+													</li>
+												</ul>
+											</div>
+											<div class="fr right-block mt5">
+												<div class="fl mr15 num-tips">为您找到&nbsp;<span
+														class="company-num text-danger">4</span>&nbsp;家符合条件的企业</div>
+												<div class="export fl mr15">
+													<!-- <a class="btn">导出</a> -->
+												</div>
+												<div class="paginate fl">
+													<ul>
+														<li class="fl" title="上一页"><a class="prev btn">
+															<i class="iconfont iconarrowleftb"></i></a>
+														</li>
+														<li class="fl f13"><span class="current text-danger">0</span>/
+															<span class="total-num">0</span>
+														</li>
+														<li class="fl" title="下一页"><a class="next btn"><i
+																	class="iconfont iconarrowrightb"></i></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+					</form>
+					<div class="search-result-container mt20 psr"></div>
+					<div class="pageListBox clearfix">
+						<div class="pageListSize fl">
+							<span class="">每页显示：</span>
+							<select name="" id="pageListSize" class="form-control" style="display:inline-block;">
+								<option value="10">10</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+								<option value="50">50</option>
+								<option value="100">100</option>
+							</select>
+						</div>
+						<div id="pageList"></div>
+						<!-- <span class="pageListTotal fl">共1000条数据</span> -->
+					</div>	
+				</div>
+			</main>
+		</div>
+
+		<!-- 底部固定备案 -->
+		<footer class="footer-fix">
+			<div class="container-fluid footer-container">
+				<div class="footer-inner-block text-center">
+					<div class="more-msg dib">
+						<a href="javascript:;" class="mr20">关于我们</a>
+						<a href="javascript:;" class="mr20">联系方式</a>
+						<a href="javascript:;">数据来源</a>
+					</div>
+					<div class="record f12 dib">© 2018-2025 | All Rights Reserved 粤ICP备05105686号
+						总部地址：广州市越秀区水荫路119号星光映景大厦5A整层
+						服务热线：400-678-6206</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<!-- 消失提示模态框 -->
+	<div id="bag_hint_modal" class="custom_modal">
+		<div class="bag_hint_main custom_modal_main">
+			<i class="bag_hint_tips custom_modal_tips"><span></span>秒后自动关闭</i>
+			<span class="custom_modal_eas">×</span>
+			<p class="bag_hint_text custom_modal_text"></p>
+		</div>
+	</div>
+	<!-- 省份城市模态窗 -->
+	<div class="modal fade in" id="city_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document" style="width: 550;">
+			<div class="modal-content">
+				<!-- 头部 -->
+				<div class="modal-header dialog_head">
+					<h5>地区多选</h5>
+					<span class="dialog_eas dialog_btn_active" aria-hidden="true" data-dismiss="modal" aria-label="Close">×</span>
+				</div>
+				<!-- 内容 -->
+				<div class="modal-body dialog_body">
+					<div class="clearfix pt10 pb10">
+						<div class="gourp_main pull-left">
+							<a class="cityquery" href="#A">全国</a>
+							<a class="cityquery" href="#B">北京</a>
+							<a class="cityquery" href="#C">重庆</a>
+							<a class="cityquery guangdong" href="#广东" >广东</a>
+							<a class="cityquery shanghai" href="#上海">上海</a>
+							<a class="cityquery" href="#T">天津</a>
+						</div>
+						<div class="gourp_search clearfix pull-right">
+							<input type="text" class="pull-left" placeholder="请输入地区">
+							<a href="javascript:;" class="city_search_btn pull-left"></a>
+						</div>
+					</div>
+					<div class="pinyin pd10"></div>
+
+					<ul class="getcity">
+						<li class="city_list">
+							<div class="city_title">A</div>
+							<div class="city_main">
+								<span >安徽:</span>
+								<div class="city_main city">
+									<ul class="clearfix">
+										<li>
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+										<li>
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+										<li>
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+										<li>
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="checkedBox tl clearfix" data-name="国家">
+					<span class="fl cleft">已选择：所属地区</span>
+					<div class="checkedBoxlist"></div>		
+				</div>
+				<!-- 尾部 -->
+				<div class="modal-footer dialog_foot" style="background-color:#f0f3f8">
+					<span class="btn btn-default dismissBtn" data-dismiss="modal">取消</span>
+					<span class="btn btn-primary modal_table_active cityBtn" data-dismiss="modal">确认</span>
+				</div>
+			</div>
+			<div class="modal_img_loading" style="display:none;"></div>
+		</div>
+	</div>
+
+	<!-- 行业模态窗 -->
+	<div class="modal fade in" id="industry_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document" style="width: 550;">
+			<div class="modal-content">
+				<!-- 头部 -->
+				<div class="modal-header dialog_head">
+					<h5>行业多选</h5>
+					<span class="dialog_eas dialog_btn_active" aria-hidden="true" data-dismiss="modal" aria-label="Close">×</span>
+				</div>
+				<!-- 内容 -->
+				<div class="modal-body dialog_body">					
+					<ul class="get_industry">
+						<li class="industry_list">
+							<div class="industry_main clearfix">
+								<span class="fl col-md-4 industry_tit">农，林，牧，渔业:</span>
+								<div class="industry_main industry fr col-md-8">
+									<ul class="clearfix">
+										<li class="col-md-6">
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+										<li  class="col-md-6">
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+										<li  class="col-md-6">
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+										<li  class="col-md-6">
+											<label class="check">
+												<input type="checkbox">
+												<span>全部</span>
+											</label>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="checkedBox tl clearfix" data-name="行业">
+					<span class="fl cleft">已选择：所属行业</span>
+					<div class="checkedBoxlist"></div>		
+				</div>
+				<!-- 尾部 -->
+				<div class="modal-footer dialog_foot" style="background-color:#f0f3f8">
+					<span class="btn btn-default dismissBtn" data-dismiss="modal">取消</span>
+					<span class="btn btn-primary modal_table_active industryBtn" data-dismiss="modal">确认</span>
+				</div>
+			</div>
+			<div class="modal_img_loading" style="display:none;"></div>
+		</div>
+	</div>
+</body>
+
+
+
+<!-- 搜索列表数据 -->
+<script id="lists" type="text/html">
+	{{if data.length>0}}
+		{{each data item key}}
+			<div class="result-item mb20 clearfix">
+				<div class="result-item-left">
+					<h4 class="mb20 mt20 fwb">
+						<a href="javascript:;" onclick="clickListTit('{{item.ParentID}}')" class="result-name">{{@item.Name}}</a>							
+					</h4>
+					<div class="item-show">
+						<ul class="clearfix">
+							<li>所属行业：{{@item.Industry}}</li>
+							<li>国家：{{@item.Country}}</li>
+							<li>公司规模：{{@item.staffSize}}</li>
+							<li>注册资本：{{@item.RegistCapi}}</li>
+							<li>成立时间：{{@item.StartDate}}</li>
+						</ul>
+						<p class="scope mt10">经营范围：{{@item.Scope}}</p>
+						<p class="lastest mt10">最后更新时间：{{@item.update_time}}</p>
+						{{if item.highlight.length != 0}}
+							<p class="search-source mt10"><span class="glyphicon glyphicon-search" style="margin-right:5px;"></span>{{@item.highlight}}</p>
+						{{/if}}						
+					</div>
+				</div>
+				{{if item.is_protect != undefined}}
+					<div class="result-item-right">
+						{{if item.is_protect == 0}}
+							<a href="javascript:;" class="portect_icon glyphicon glyphicon-plus"  data-id="{{item.ParentID}}">保护</a>
+						{{else}}
+							<a href="javascript:;" class="portect_icon cur" >已保护</a>
+						{{/if}}
+						<div class="phone-record">
+							<p>本月拨打<span style="color:#000">{{item.call_month_total}}次</span></p>
+							<div class="phone-showbox">
+								<h2>总拨打{{item.call_total}}次</h2>
+								<div class="phone-contain">
+									<ul>
+										{{if item.call.length > 0}}
+											{{each item.call list }}
+												<li class="call_li">{{list}}</li>
+											{{/each}}
+										{{else}}
+											<li>没有数据</li>
+										{{/if}}
+									</ul>
+								</div>							
+							</div>
+						</div>
+					</div>
+				{{/if}}
+				<div class="follow">
+				</div>
+			</div>
+		{{/each}}
+	{{else}}
+		<div id="empty-data"><img src="assets/images/empty-data.png" alt=""></div>
+	{{/if}}
+</script>
+<script src="assets/js/localhost.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/template-web.js"></script>
+<script src="assets/js/moment.min.js"></script>
+<script src="assets/js/datepicker.all.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/function.js"></script>
+<script src="assets/js/md5.js"></script>
+<script src="assets/page/list/city.js"></script>
+<script src="assets/page/list/moreSelect.js"></script>
+<script src="assets/page/list/list.js"></script>
+<script type="text/javascript">
+	var token = getQueryString("token");
+	sessionStorage.setItem("token_key", token);
+
+	function clickListTit(id){
+	    var url = 'detail.html?dt_id='+id;
+	    var ifarme = '<iframe src="detail.html?dt_id='+id+' height="300" width="500" name="demo" scrolling="auto" sandbox="allow-same-origin"></iframe>';
+	    $(".page-wrapper").append(ifarme);
+	    if(getQueryString("source") == "central"){        
+	        window.location.href = url +'&source=central'+'&token='+sessionStorage.getItem("token_key")
+	    }else{
+	         window.location.href = url 
+	    }
+
+	}
+</script>
+</html>

@@ -1,0 +1,2272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>聚查查</title>
+    <link rel="shortcut icon " type="images/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/css.css"> -->
+    <link rel="stylesheet" href="assets/page/detail/detail.css">
+    <style type="text/css">
+        .nodata{margin:50px auto;text-align:center;}
+        .nodata p{font-size: 18px;color:#999;margin-top:15px;}
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- 顶部固定导航栏 -->
+        <nav class="navbar navbar-default nav-container">
+          <div class="nav-inner-block container-fluid clearfix">
+            <div class="navbar-header fl">
+              <a class="navbar-brand" href="index.html">
+                <img alt="Brand" src="assets/images/logo.png">
+                <span>聚查查</span>
+              </a>
+            </div>
+            <div class="nav-r-section fr">
+              <ul class="clearfix fl" id="top-tab">
+                <li class="active"><a href="javascript:;">外贸公司</a></li>
+                <li><a href="javascript:;">海关数据</a></li>
+                <li><a href="javascript:;">社媒搜索</a></li>
+                <li><a href="javascript:;">服务&价格</a></li>
+                <li><a href="javascript:;">外贸知识</a></li>
+                <li><a href="javascript:;">个人中心</a></li>
+              </ul>
+              <div class="login fl">
+                <a href="#" class="btn btn-primary mr10">登录</a>
+                <a href="#" class="btn btn-default">注册</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- 页面主体 -->
+        <div class="content-wrapper container-fluid">
+            <main class="row">
+                
+                <div class="detail-page-container content col-md-9 col-xs-8">
+                    <section class="data-statistics">
+                        <div class="data-item-container clearfix pl20">
+                            <div class="date-show row pl0">
+                                <div class="left-block col-lg-7 col-md-7 col-sm-7">
+                                    <h4 class="companyName mb10 fwb"></h4>
+                                    <ul class="clearfix">
+                                        <li>国家：<span class="company_country"></span></li>
+                                        <li>所属行业：<span class="company_industry"></span></li>
+                                        <li>公司规模：<span class="company_scale"></span></li>
+                                        <li>注册资本：<span class="company_capital"></span></li>
+                                    </ul>
+                                    <p class="scope mt10">公司官网：<span class="company_website"></span></p>
+                                    <p class="lastest mt10">最后更新时间：<span class="company_update_time"></span></p>
+                                </div>
+                                <div class="right-block col-lg-5 col-md-5 col-sm-5 pl0">
+                                    <ul class="clearfix">
+                                        <li>
+                                            <p>采购次数</p>
+                                            <span>0</span>
+                                        </li>
+                                        <li>
+                                            <p>贸易伙伴</p>
+                                            <span>0</span>
+                                        </li>
+                                        <li>
+                                            <p>竞争对手</p>
+                                            <span>0</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <button type="button" class="btn follow"><span class="iconfont iconplus mr5 fwb"></span>关注</button> -->
+                        </div>
+                    </section>
+                    <section class="data-detail-wrap pb10">
+                        <div class="handover-nav pt10 pl10">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a id="basicMsg" href="#basicMsgInfo" aria-controls="basicMsgInfo" role="tab" data-toggle="tab">基本信息</a></li>
+                                <li role="presentation" name="alibaba"><a id="Ali" href="#type" aria-controls="type" role="tab" data-toggle="tab">阿里巴巴</a></li>
+                                <li role="presentation" name="made"><a id="ch_made" href="#made_china" aria-controls="made_china" role="tab" data-toggle="tab">中国制造</a></li>
+                                <li role="presentation" name="gs"><a id="global" href="#global_sourse" aria-controls="global_sourse" role="tab" data-toggle="tab">环球资源</a></li>
+                                <li role="presentation" name="zhaopin"><a id="zhaopin" href="#recruitMsg" aria-controls="recruitMsg" role="tab" data-toggle="tab">招聘信息</a></li>
+                                <li role="presentation" name="fz"><a id="fz" href="#development" aria-controls="development" role="tab" data-toggle="tab">企业发展</a></li>
+                                <li role="presentation" name="cq"><a id="cq" href="#property" aria-controls="property" role="tab" data-toggle="tab">知识产权</a></li>
+                                <li role="presentation" name="ms"><a id="ms" href="#managementStatu" aria-controls="property" role="tab" data-toggle="tab">经营现状</a></li>
+                                <li role="presentation" name="lawss"><a id="lawss" href="#lawStatu" aria-controls="property" role="tab" data-toggle="tab">法律诉讼</a></li>
+
+                                <!-- <li role="presentation"><a href="#purchaseMsg" aria-controls="purchaseMsg" role="tab" data-toggle="tab">采购信息</a></li> -->
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade in active" id="basicMsgInfo">
+                                <div class="nav_list">
+                                    <ul class="clearfix">
+                                        <li class="nav_li" attr-id="#business-info"><a href="javascript:;">工商信息</a></li>
+                                        <!-- <li class="nav_li" attr-id="#credit-exposure"><a href="javascript:;">信用风险</a></li> -->
+                                        <li class="nav_li" attr-id="#key-personnel"><a href="javascript:;">主要人员</a></li>
+                                        <li class="nav_li" attr-id="#shareholder-info"><a href="javascript:;">股东信息</a></li>
+                                        <li class="nav_li" attr-id="#alteration-record"><a href="javascript:;">变更记录</a></li>
+                                        <li class="nav_li" attr-id="#touzi"><a href="javascript:;">对外投资</a></li>
+                                        <li class="nav_li" attr-id="#subcom"><a href="javascript:;">分支机构</a></li>                                       
+                                    </ul>
+                                </div>
+                                <div class="business-info" id="business-info">
+                                    <h5 class="fwb mb10 ml10">工商信息</h5>
+                                    <div class="structure-chart">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="33.333%">法定代表人</th>
+                                                    <th width="33.333%">
+                                                        <div class="check-detail text-right">
+                                                            企业图谱
+                                                            <a>查看详情</a>
+                                                        </div>
+                                                    </th>
+                                                    <th width="33.333%">
+                                                        <div class="check-detail text-right">
+                                                            企业图谱
+                                                            <a>查看详情</a>
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <p class="operName text-center"></p>
+                                                        <!-- <div class="legal-person">
+                                                            <p class="operName"></p>
+                                                            <p>他有<span class="text-danger">2</span>家公司 ，分布如下</p>
+                                                            <p>美国（共<span class="text-danger">2</span>家）Lorem led ipsum dolor sit amet等</p>
+                                                        </div> -->
+                                                    </td>
+                                                    <td>
+                                                        <div class="structure-chart">
+                                                            <!-- <img class="img-responsive" src="assets/images/logo.png" alt=""> -->
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="structure-chart">
+                                                            <!-- <img class="img-responsive" src="assets/images/logo.png" alt=""> -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <table class="table-buty company-info table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>注册号</td>
+                                                <td></td>
+                                                <td>注册资本</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>成立时间</td>
+                                                <td></td>
+                                                <td>法定代表人</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>实收资本</td>
+                                                <td></td>
+                                                <td>国家/地区</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>洲</td>
+                                                <td></td>
+                                                <td>所属行业</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>企业类型</td>
+                                                <td></td>
+                                                <td>行业规模</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>税号</td>
+                                                <td></td>
+                                                <td>企业现状</td>
+                                                <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td>注册地址</td>
+                                                <td></td>
+                                                <td>经营范围</td>
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- <div class="credit-exposure mt20" id="credit-exposure">
+                                    <h5 class="fwb mb10 ml10">信用风险</h5>
+                                    <div class="exposure-list-container">
+                                        <div class="list-show">
+                                            <div class="exposure-num">
+                                                <span>自身风险</span>
+                                                <span class="num">7条</span>
+                                            </div>
+                                            <div class="exposure-item">
+                                                <ul class="clearfix">
+                                                    <li>
+                                                        <span>该公司有xxxxxxxxxxxxxxxxxxxxx信息（3）</span>
+                                                        <a href="javascript:;">详情</a>
+                                                    </li>
+                                                    <li>
+                                                        <span>该公司有xxxxxxxxxxxxxxxxxxxxx信息（3）</span>
+                                                        <a href="javascript:;">详情</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="list-show">
+                                            <div class="exposure-num">
+                                                <span>周边风险</span>
+                                                <span class="num">24条</span>
+                                            </div>
+                                            <div class="exposure-item">
+                                                <ul class="clearfix">
+                                                    <li>
+                                                        <span>该公司有xxxxxxxxxxxxxxxxxxxxx信息（3）</span>
+                                                        <a href="javascript:;">详情</a>
+                                                    </li>
+                                                    <li>
+                                                        <span>该公司有xxxxxxxxxxxxxxxxxxxxx信息（3）</span>
+                                                        <a href="javascript:;">详情</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="list-show">
+                                            <div class="exposure-num">
+                                                <span>预警提示</span>
+                                                <span class="num">27条</span>
+                                            </div>
+                                            <div class="exposure-item">
+                                                <ul class="clearfix">
+                                                    <li>
+                                                        <span>该公司有xxxxxxxxxxxxxxxxxxxxx信息（3）</span>
+                                                        <a href="javascript:;">详情</a>
+                                                    </li>
+                                                    <li>
+                                                        <span>该公司有xxxxxxxxxxxxxxxxxxxxx信息（3）</span>
+                                                        <a href="javascript:;">详情</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="check-detail"><a href="javascript:;">查看详情</a></div>
+                                    </div>
+                                </div> -->
+                                <div class="key-personnel mt20" id="key-personnel">
+                                    <h5 class="fwb mb10 ml10">主要人员</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th width="50%">姓名</th>
+                                                    <th class="text-center" width="40%">职位</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td>
+                                                        <div class="key-name">
+                                                            <div class="name">
+                                                                <span>李</span>
+                                                                李晓焦
+                                                            </div>
+                                                            <a href="javascript:;">他有34家公司&gt;</a>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">董事</td>
+                                                </tr> -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="shareholder-info" id="shareholder-info">
+                                    <h5 class="fwb mb10 ml10">股东信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th width="45%">
+                                                        <span class="mr10">股东（发起人）</span>
+                                                        <!-- <a class="check-key-p" href="javascript:;">查看实际控股人></a> -->
+                                                    </th>
+                                                    <th width="15%" class="text-center">出资比例</th>
+                                                    <th width="15%" class="text-center">认缴出资额</th>
+                                                    <th width="15%" class="text-center">认缴出资日期</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="alteration-record" style="margin-bottom:30px;" id="alteration-record">
+                                    <h5 class="fwb mb10 ml10">变更记录</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="5%">序号</th>
+                                                    <th class="text-center" width="10%">变更日期</th>
+                                                    <th class="text-center" width="30%">变更项目</th>
+                                                    <th class="text-center" width="30%">变更前</th>
+                                                    <th class="text-center" width="35%">变更后</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div id="pageList"></div>
+                                </div>
+
+                                <div class="touzi-info" id="touzi">
+                                    <h5 class="fwb mb10 ml10">对外投资</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="5%">序号</th>
+                                                    <th class="text-center" width="35%">
+                                                        <span class="mr10">被投资企业名称</span>
+                                                    </th>
+                                                    <th width="10%" class="text-center">法定代表人</th>
+                                                    <th width="10%" class="text-center">注册资本</th>
+                                                    <th width="10%" class="text-center">投资比例</th>
+                                                    <th width="10%" class="text-center">投资数额</th>
+                                                    <th width="10%" class="text-center">成立日期</th>
+                                                    <th width="5%" class="text-center">状态</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="subcom-info" id="subcom">
+                                    <h5 class="fwb mb10 ml10">分支机构</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th width="5%" class="text-center">序号</th>
+                                                    <th width="40%">
+                                                        <span class="mr10">企业名称</span>
+                                                    </th>
+                                                    <th width="35%" class="text-center">负责人</th>                                                    
+                                                    <th width="20%" class="text-center">状态</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="type" name="alibaba">
+                                <table class="table-buty alibaba-info table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>更新时间</td>
+                                            <td></td>
+                                            <td>英文名称</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>主页地址</td>
+                                            <td></td>
+                                            <td>所在城市</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>联系人</td>
+                                            <td></td>
+                                            <td>联系地址</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>邮政编码</td>
+                                            <td></td>
+                                            <td>所在国家</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>传真</td>
+                                            <td></td>
+                                            <td>职称</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>所在地区</td>
+                                            <td></td>
+                                            <td>联系电话</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>中文名称</td>
+                                            <td></td>
+                                            <td>工商注册号</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>注册资金</td>
+                                            <td></td>
+                                            <td>注册地址</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>成立时间</td>
+                                            <td></td>
+                                            <td>法人</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>法律形式</td>
+                                            <td></td>
+                                            <td>经营地址</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>申请人</td>
+                                            <td></td>
+                                            <td>申请人职称</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>所在部门</td>
+                                            <td></td>
+                                            <td>业务类型</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>地址</td>
+                                            <td></td>
+                                            <td>主营产品</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>公司规模</td>
+                                            <td></td>
+                                            <td>年收入</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>产品认证</td>
+                                            <td></td>
+                                            <td>资质证书</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>专利</td>
+                                            <td></td>
+                                            <td>商标</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>主要市场</td>
+                                            <td></td>
+                                            <td>所有权</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>公司简介</td>
+                                            <td></td>
+                                            <td>移动电话</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>主页截图</td>
+                                            <td></td>
+                                            <td>主营产品竞争数截图</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>网站年限</td>
+                                            <td></td>
+                                            <td>网站级别</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>主营产品竞争数</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                              <div role="tabpanel" class="tab-pane fade" id="made_china" name="made">
+                                <table class="table-buty made-china-info table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                                    <td>更新时间</td>
+                                                    <td>--</td>
+                                                    <td>联系人头像</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>主页地址</td>
+                                                    <td>--</td>
+                                                    <td>公司英文名称</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系方式1</td>
+                                                    <td>--</td>
+                                                    <td>联系方式2</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>公司地址</td>
+                                                    <td>--</td>
+                                                    <td>业务类型</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>年产值</td>
+                                                    <td>--</td>
+                                                    <td>国际商业条款</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OEM ODM可用性</td>
+                                                    <td>--</td>
+                                                    <td>在职员工人数</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>主要产品</td>
+                                                    <td>--</td>
+                                                    <td>生产线数量</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>平均交货时间</td>
+                                                    <td>--</td>
+                                                    <td>公司头像</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>成立年份</td>
+                                                    <td>--</td>
+                                                    <td>注册账户</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>主要市场</td>
+                                                    <td>--</td>
+                                                    <td>最后登录时间</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>主页截图</td>
+                                                    <td>--</td>
+                                                    <td>公司简介</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>出口百分比</td>
+                                                    <td>--</td>
+                                                    <td>公司域名</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>主营产品竞争数截图</td>
+                                                    <td>--</td>
+                                                    <td>业务范围</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>年出口收入</td>
+                                                    <td>--</td>
+                                                    <td>出口年份</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>外贸人员数量</td>
+                                                    <td>--</td>
+                                                    <td>管理体系认证</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系人</td>
+                                                    <td>--</td>
+                                                    <td>主营产品竞争数</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>注册资本</td>
+                                                    <td>--</td>
+                                                    <td>付款条件</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>对外贸易许可证</td>
+                                                    <td>--</td>
+                                                    <td>研发人员数量</td>
+                                                     <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>联系人职位</td>
+                                                     <td>--</td>
+                                                    <td>工厂地址</td>
+                                                     <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>年收入</td>
+                                                     <td>--</td>
+                                                     <td>最近港口</td>
+                                                     <td>--</td>
+                                                </tr>
+                                             
+                                                <tr>
+                                                    <td>厂房面积</td>
+                                                     <td>--</td>
+                                                    <td>传真</td>
+                                                     <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>研发能力</td>
+                                                    <td>--</td>
+                                                </tr>
+                                    </tbody>                                         
+                                </table>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="global_sourse" name="gs">
+                                <table class="table-buty global-sourse-info table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                                    <td>更新时间</td>
+                                                    <td>--</td>
+                                                    <td>主页地址</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>公司英文名称</td>
+                                                    <td>--</td>
+                                                    <td>公司中文名称</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>网站联系人</td>
+                                                    <td>--</td>
+                                                    <td>联系人职位</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>公司地址</td>
+                                                    <td>--</td>
+                                                    <td>城市</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>年产值</td>
+                                                    <td>--</td>
+                                                    <td>国家地区</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>身份</td>
+                                                    <td>--</td>
+                                                    <td>邮政编码</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>公司电话</td>
+                                                    <td>--</td>
+                                                    <td>公司传真</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>电话</td>
+                                                    <td>--</td>
+                                                    <td>工商注册号</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>营业执照地址</td>
+                                                    <td>--</td>
+                                                    <td>业务类型</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>进出口市场</td>
+                                                    <td>--</td>
+                                                    <td>成立年份</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>公司总人数</td>
+                                                    <td>--</td>
+                                                    <td>研发人员数量</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工程师人数</td>
+                                                    <td>--</td>
+                                                    <td>年营业额</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>注册资本</td>
+                                                    <td>--</td>
+                                                    <td>品牌名称</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>出口百分比</td>
+                                                    <td>--</td>
+                                                    <td>主要优势</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>银行明细</td>
+                                                    <td>--</td>
+                                                    <td>月产能</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>OEM服务</td>
+                                                    <td>--</td>
+                                                    <td>工厂所有权</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>工厂面积</td>
+                                                    <td>--</td>
+                                                    <td>制造设备投资额</td>
+                                                    <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>质量控制</td>
+                                                    <td>--</td>
+                                                    <td>工厂中的机器类型</td>
+                                                        <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>主要客户</td>
+                                                        <td>--</td>
+                                                    <td>付款方式</td>
+                                                        <td>--</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>生产线</td>
+                                                        <td>--</td>
+                                                        <td>公司简介</td>
+                                                        <td>--</td>
+                                                </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                       <!--          <div role="tabpanel" class="tab-pane fade" id="zhaopin" name="zp">
+                                    <table class="table-buty zhaopin-info table table-bordered">
+                                        <tbody></tbody>
+                                    </table>
+                                </div> -->
+                            <div role="tabpanel" class="tab-pane fade" id="recruitMsg" name="zhaopin">
+                                <table class=" zhaopin-info table ">
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="development" name="fz">
+                                <div class="nav_list">
+                                    <ul class="clearfix">
+                                        <li class="nav_li" attr-id="#financing"><a href="javascript:;">融资信息</a></li>
+                                        <li class="nav_li" attr-id="#investAgency"><a href="javascript:;">投资机构</a></li>
+                                        <li class="nav_li" attr-id="#product"><a href="javascript:;">企业业务</a></li>
+                                        <li class="nav_li" attr-id="#compatProduct"><a href="javascript:;">竞品信息</a></li>
+                                        <li class="nav_li" attr-id="#member"><a href="javascript:;">核心人员</a></li>
+                                    </ul>
+                                </div>
+                                <div class="financing" id="financing">
+                                    <h5 class="fwb mb10 ml10">融资信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="10%">日期</th>
+                                                    <th class="text-center" width="15%">产品名称</th>
+                                                    <th class="text-center" width="10%">融资轮次</th>
+                                                    <th class="text-center" width="10%">金额</th>
+                                                    <th class="text-center" width="25%">投资方</th>
+                                                    <th class="text-center" width="20%">新闻来源</th>                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="investAgency" id="investAgency">
+                                    <h5 class="fwb mb10 ml10">投资机构</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">机构图片</th>
+                                                    <th class="text-center" width="20%">投资机构</th>
+                                                    <th class="text-center" width="10%">成立日期</th>
+                                                    <th class="text-center" width="15%">所属地</th>
+                                                    <th class="text-center" width="30%">简介</th>                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="product" id="product">
+                                    <h5 class="fwb mb10 ml10">企业业务</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="10%">产品图片</th>
+                                                    <th class="text-center" width="10%">产品名</th>
+                                                    <th class="text-center" width="10%">融资信息</th>
+                                                    <th class="text-center" width="10%">成立日期</th>
+                                                    <th class="text-center" width="15%">所属地</th>
+                                                    <th class="text-center" width="35%">产品介绍</th>                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="compatProduct" id="compatProduct">
+                                    <h5 class="fwb mb10 ml10">竞品信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="10%">产品图片</th>
+                                                    <th class="text-center" width="10%">产品名</th>
+                                                    <th class="text-center" width="10%">融资信息</th>
+                                                    <th class="text-center" width="10%">成立日期</th>
+                                                    <th class="text-center" width="10%">所属地</th>
+                                                    <th class="text-center" width="25%">产品介绍</th>   
+                                                    <th class="text-center" width="15%">关联企业</th>                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="member" id="member">
+                                    <h5 class="fwb mb10 ml10">核心人员</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="35%">姓名</th>
+                                                    <th class="text-center" width="20%">职位</th>
+                                                    <th class="text-center" width="35%">简介</th>                                                 
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="property" name="fz">
+                                <div class="nav_list">
+                                    <ul class="clearfix">
+                                        <li class="nav_li" attr-id="#shangbiao"><a href="javascript:;">商标信息</a></li>
+                                        <li class="nav_li" attr-id="#zhuanli"><a href="javascript:;">专利信息</a></li>
+                                        <li class="nav_li" attr-id="#zhengshu"><a href="javascript:;">证书信息</a></li>
+                                        <li class="nav_li" attr-id="#zpzzq"><a href="javascript:;">作品著作权</a></li>
+                                        <li class="nav_li" attr-id="#rjzzq"><a href="javascript:;">软件著作权</a></li>
+                                        <li class="nav_li" attr-id="#website"><a href="javascript:;">网站信息</a></li>      
+                                    </ul>
+                                </div>
+                                <div class="shangbiao" id="shangbiao">
+                                    <h5 class="fwb mb10 ml10">商标信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="5%">序号</th>
+                                                    <th class="text-center" width="15%">商标</th>
+                                                    <th class="text-center" width="15%">商标名</th>
+                                                    <th class="text-center" width="15%">流程状态</th>   
+                                                    <th class="text-center" width="10%">申请日期</th>                                                   
+                                                    <th class="text-center" width="10%">注册号</th>    
+                                                    <th class="text-center" width="10%">国际分类</th>                                                   
+                                                    <!-- <th class="text-center" width="20%">产品介绍</th>                                                   -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="zhuanli" id="zhuanli">
+                                    <h5 class="fwb mb10 ml10">专利信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">专利类型</th>
+                                                    <th class="text-center" width="20%">公开（公告）号</th>
+                                                    <th class="text-center" width="20%">公开（公告）日期</th>   
+                                                    <th class="text-center" width="35%">名称</th>                                             
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="zhengshu" id="zhengshu">
+                                    <h5 class="fwb mb10 ml10">证书信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">证书类型</th>
+                                                    <th class="text-center" width="25%">证书名称</th>
+                                                    <th class="text-center" width="20%">证书编号</th>   
+                                                    <th class="text-center" width="15%">发证日期</th>   
+                                                    <th class="text-center" width="15%">截止日期</th>                                               
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="zpzzq" id="zpzzq">
+                                    <h5 class="fwb mb10 ml10">作品著作权</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">作品名称</th>
+                                                    <th class="text-center" width="15%">首次发表日期</th>
+                                                    <th class="text-center" width="15%">创作完成日期</th> 
+                                                    <th class="text-center" width="15%">登记号</th>    
+                                                    <th class="text-center" width="15%">登记日期</th>       
+                                                    <th class="text-center" width="15%">登记类别</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="rjzzq" id="rjzzq">
+                                    <h5 class="fwb mb10 ml10">软件著作权</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">软件名称</th>
+                                                    <th class="text-center" width="15%">版本号</th>
+                                                    <th class="text-center" width="15%">发布日期</th>   
+                                                    <th class="text-center" width="15%">软件简称</th>   
+                                                    <th class="text-center" width="15%">登记号</th>        
+                                                    <th class="text-center" width="15%">登记批准日期</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="website" id="website">
+                                    <h5 class="fwb mb10 ml10">网站信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">网站名称</th>
+                                                    <th class="text-center" width="20%">网址</th>
+                                                    <th class="text-center" width="20%">域名</th> 
+                                                    <th class="text-center" width="20%">网站备案/许可证号</th>  
+                                                    <th class="text-center" width="15%">审核日期</th>       
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="managementStatu" name="ms">
+                                <div class="nav_list">
+                                    <ul class="clearfix">
+                                        <li class="nav_li" attr-id="#m_tender"><a href="javascript:;">招投标信息</a></li>
+                                        <li class="nav_li" attr-id="#m_job"><a href="javascript:;">招聘</a></li>
+                                        <li class="nav_li" attr-id="#m_wechat"><a href="javascript:;">微信公众号</a></li>
+                                        <li class="nav_li" attr-id="#m_weibo"><a href="javascript:;">微博</a></li>
+                                        <li class="nav_li" attr-id="#m_yanbao"><a href="javascript:;">公告研报</a></li>
+                                        <li class="nav_li" attr-id="#m_supplier"><a href="javascript:;">供应商</a></li>
+                                        <li class="nav_li" attr-id="#m_customer"><a href="javascript:;">客户</a></li>
+                                    </ul>
+                                </div>
+                                <div class="m_tender" id="m_tender">
+                                    <h5 class="fwb mb10 ml10">招投标信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="40%">描述</th>
+                                                    <th class="text-center" width="15%">发布日期</th>
+                                                    <th class="text-center" width="15%">所属地区</th>   
+                                                    <th class="text-center" width="20%">项目分类</th>                                                       
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="m_job" id="m_job">
+                                    <h5 class="fwb mb10 ml10">招聘</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">发布日期</th>
+                                                    <th class="text-center" width="30%">招聘职位</th>
+                                                    <th class="text-center" width="15%">月薪</th> 
+                                                    <th class="text-center" width="10%">学历</th>
+                                                    <th class="text-center" width="10%">经验</th>                                                     
+                                                    <th class="text-center" width="10%">所在城市</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="m_wechat" id="m_wechat">
+                                    <h5 class="fwb mb10 ml10">微信公众号</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">头像</th>
+                                                    <th class="text-center" width="15%">微信公众号</th>
+                                                    <th class="text-center" width="15%">微信号</th>    
+                                                    <th class="text-center" width="15%">二维码</th>
+                                                    <th class="text-center" width="30%">简介</th>                                                     
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="m_weibo" id="m_weibo">
+                                    <h5 class="fwb mb10 ml10">微博</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">头像</th>
+                                                    <th class="text-center" width="15%">微博昵称</th>
+                                                    <th class="text-center" width="20%">行业类别</th>   
+                                                    <th class="text-center" width="40%">简介</th>                                                     
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="m_yanbao" id="m_yanbao">
+                                    <h5 class="fwb mb10 ml10">公告研报</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="50%">研报内容</th>
+                                                    <th class="text-center" width="20%">报告种类</th>
+                                                    <th class="text-center" width="20%">发布日期</th>                                                       
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="m_supplier" id="m_supplier">
+                                    <h5 class="fwb mb10 ml10">供应商</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="35%">供应商</th>
+                                                    <th class="text-center" width="10%">采购占比</th>
+                                                    <th class="text-center" width="15%">采购金额（万元）</th>
+                                                    <th class="text-center" width="10%">报告期</th>                    
+                                                    <th class="text-center" width="10%">数据来源</th>
+                                                    <th class="text-center" width="10%">关联关系</th>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="m_customer" id="m_customer">
+                                    <h5 class="fwb mb10 ml10">客户</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="35%">客户</th>
+                                                    <th class="text-center" width="10%">销售占比</th>
+                                                    <th class="text-center" width="15%">销售金额（万元）</th>
+                                                    <th class="text-center" width="10%">报告期</th>
+                                                    <th class="text-center" width="10%">数据来源</th>
+                                                    <th class="text-center" width="10%">关联关系</th>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="lawStatu" name="lawss">
+                                <div class="nav_list">
+                                    <ul class="clearfix">
+                                        <li class="nav_li" attr-id="#l_wenshu"><a href="javascript:;">裁判文书</a></li>
+                                        <li class="nav_li" attr-id="#l_gonggao"><a href="javascript:;">法院公告</a></li>
+                                        <li class="nav_li" attr-id="#l_notice"><a href="javascript:;">开庭公告</a></li>
+                                        <li class="nav_li" attr-id="#l_notice"><a href="javascript:;">被执行人信息</a></li>
+                                        <li class="nav_li" attr-id="#l_lian"><a href="javascript:;">立案信息</a></li>
+                                        <!-- <li class="nav_li" attr-id="#l_assistance"><a href="javascript:;">股权冻结</a></li> -->
+                                    </ul>
+                                </div>
+                                <div class="l_wenshu" id="l_wenshu">
+                                    <h5 class="fwb mb10 ml10">裁判文书</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">案件名称</th>
+                                                    <th class="text-center" width="15%">案由</th>
+                                                    <th class="text-center" width="10%">案件金额</th>   
+                                                    <th class="text-center" width="10%">发布日期</th>
+                                                    <th class="text-center" width="10%">案号</th> 
+                                                    <th class="text-center" width="15%">案件身份</th>
+                                                    <th class="text-center" width="15%">执行法院</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="l_gonggao" id="l_gonggao">
+                                    <h5 class="fwb mb10 ml10">法院公告</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="15%">上诉人</th>
+                                                    <th class="text-center" width="15%">被上诉人</th>
+                                                    <th class="text-center" width="15%">公告类型</th>   
+                                                    <th class="text-center" width="15%">公告人</th>
+                                                    <th class="text-center" width="15%">刊登日期</th>   
+                                                    <th class="text-center" width="15%">内容</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="l_notice" id="l_notice">
+                                    <h5 class="fwb mb10 ml10">开庭公告</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="20%">案号</th>
+                                                    <th class="text-center" width="15%">开庭时间</th>
+                                                    <th class="text-center" width="13%">案由</th> 
+                                                    <th class="text-center" width="20%">公诉人/原告/上诉人/申请人</th>
+                                                    <th class="text-center" width="22%">被告人/被告/被上诉人/被申请人</th>   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="l_zhixing" id="l_zhixing">
+                                    <h5 class="fwb mb10 ml10">被执行人信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="20%">案号</th>
+                                                    <th class="text-center" width="10%">立案日期</th>
+                                                    <th class="text-center" width="25%">执行法院</th>   
+                                                    <th class="text-center" width="25%">执行标的</th>                                                   
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="l_lian" id="l_lian">
+                                    <h5 class="fwb mb10 ml10">立案信息</h5>
+                                    <div class="table_height">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center" width="10%">序号</th>
+                                                    <th class="text-center" width="20%">案号</th>
+                                                    <th class="text-center" width="10%">立案日期</th>
+                                                    <th class="text-center" width="25%">公诉人/原告/上诉人/申请人</th> 
+                                                    <th class="text-center" width="25%">被告人/被告/被上诉人/被申请人</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div role="tabpanel" class="tab-pane fade" id="purchaseMsg">444444444</div> -->
+                        </div>
+                    </section>
+                </div>
+                <div class="detail-page-container  col-md-3 col-xs-4" > 
+                    <div class="cardBox">
+                        <section class="cardTitle f16 pl10">
+                            <span class="pl10">联系方式（<b class="cardListNum"></b>）</span>
+                        </section>
+                        <section class="cardListAll"></section>                 
+                    </div>
+                </div>
+            </main>
+        </div>
+        <!-- 底部固定备案 -->
+        <footer class="footer-fix">
+            <div class="container-fluid footer-container">
+                <div class="footer-inner-block text-center">
+                    <div class="more-msg dib">
+                        <a href="javascript:;" class="mr20">关于我们</a>
+                        <a href="javascript:;" class="mr20">联系方式</a>
+                        <a href="javascript:;">数据来源</a>
+                    </div>
+                    <div class="record f12 dib">© 2018-2025   | All Rights Reserved 粤ICP备05105686号 总部地址：广州市越秀区水荫路119号星光映景大厦5A整层 服务热线：400-678-6206</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- 消失提示模态框 -->
+    <div id="bag_hint_modal" class="custom_modal">
+      <div class="bag_hint_main custom_modal_main">
+        <i class="bag_hint_tips custom_modal_tips"><span></span>秒后自动关闭</i>
+        <span class="custom_modal_eas">×</span>
+        <p class="bag_hint_text custom_modal_text"></p>
+      </div>
+    </div>
+</body>
+<script src="assets/js/localhost.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/template-web.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/bootstrap-table.min.js"></script>
+<script src="assets/js/function.js"></script>
+<script src="assets/js/md5.js"></script>
+<script src="assets/js/cardList.js"></script>
+<script src="assets/js/table.js"></script>
+<!-- 法律 start-->
+<script id="wenshu_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.wenshu_num}}</td>
+                <td class="text-center">{{item.wenshu_name}}</td>
+                <td class="text-center">{{item.wenshu_reason}}</td>
+                <td class="text-center">{{item.wenshu_money}}</td>
+                <td class="text-center">{{item.wenshu_date}}</td>
+                <td class="text-center">{{item.wenshu_no}}</td>
+                <td class="text-center">{{item.wenshu_identity}}</td>
+                <td class="text-center">{{item.wenshu_court}}</td>                                              
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="gonggao_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.gonggao_num}}</td>
+                <td class="text-center">{{item.gonggao_appellor}}</td>
+                <td class="text-center">{{item.gonggao_appellee}}</td>
+                <td class="text-center">{{item.gonggao_type}}</td>
+                <td class="text-center">{{item.gonggao_notice}}</td>
+                <td class="text-center">{{item.gonggao_date}}</td>  
+                <td class="text-center">详情</td> 
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="notice_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.notice_num}}</td>
+                <td class="text-center" style="color:#108AEC;">{{item.notice_no}}</td>
+                <td class="text-center">{{item.notice_date}}</td>
+                <td class="text-center">{{item.notice_reason}}</td>
+                <td class="text-center">{{item.notice_appellor}}</td>
+                <td class="text-center">{{item.notice_appellee}}</td>
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="zhixing_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.zhixing_num}}</td>
+                <td class="text-center" style="color:#108AEC;">{{item.zhixing_no}}</td>
+                <td class="text-center">{{item.zhixing_date}}</td>
+                <td class="text-center">{{item.zhixing_court}}</td>
+                <td class="text-center">{{item.zhixing_object}}</td>
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="lian_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.lian_num}}</td>
+                <td class="text-center" style="color:#108AEC;">{{item.lian_no}}</td>
+                <td class="text-center">{{item.lian_date}}</td>
+                <td class="text-center">{{item.lian_appellor}}</td>
+                <td class="text-center">{{item.lian_appellee}}</td>
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+
+<!-- 法律 end -->
+<!-- 经营现状start -->
+<script id="tender_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.tender_num}}</td>
+                <td class="text-center">{{item.tender_text}}</td>
+                <td class="text-center">{{item.tender_date}}</td>
+                <td class="text-center">{{item.tender_region}}</td>
+                <td class="text-center">{{item.tender_type}}</td>                                               
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="job_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.job_num}}</td>
+                <td class="text-center">{{item.job_date}}</td>
+                <td class="text-center">{{item.job_name}}</td>
+                <td class="text-center">{{item.job_salary}}</td>
+                <td class="text-center">{{item.job_eduLevel}}</td>
+                <td class="text-center">{{item.job_workingExp}}</td>
+                <td class="text-center">{{item.job_city}}</td>                                              
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="wechat_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.wechat_num}}</td>
+                <td class="text-center"><img src="{{item.wechat_src}}" alt="" width="100px"/></td>
+                <td class="text-center">{{item.wechat_name}}</td>
+                <td class="text-center">{{item.wechat_no}}</td>                 
+                <td class="text-center">{{item.wechat_qrCode}}</td>
+                <td class="text-center">{{item.wechat_text}}</td>                                           
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="weibo_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.weibo_num}}</td>
+                <td class="text-center"><img src="{{item.weibo_src}}" alt="" width="100px"/></td>
+                <td class="text-center">{{item.weibo_name}}</td>
+                <td class="text-center">{{item.weibo_type}}</td>                    
+                <td class="text-center">{{item.weibo_text}}</td>                                            
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="yanbao_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.yanbao_num}}</td>
+                <td class="text-center">{{item.yanbao_name}}</td>
+                <td class="text-center">{{item.yanbao_type}}</td>                   
+                <td class="text-center">{{item.yanbao_date}}</td>                                           
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="supplier_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.supplier_num}}</td>
+                <td class="touzi_head">
+                        <img src="{{item.supplier_src}}" alt="" width="50px" />                     
+                        <span>{{item.supplier_name}}</span>
+                </td>
+                <td class="text-center">{{item.supplier_propor}}</td>
+                <td class="text-center">{{item.supplier_money}}</td>                    
+                <td class="text-center">{{item.supplier_year}}</td>
+                <td class="text-center">{{item.supplier_source}}</td>                   
+                <td class="text-center">{{item.supplier_relev}}</td>                                            
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="customer_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.customer_num}}</td>
+                <td class="touzi_head">
+                        <img src="{{item.customer_src}}" alt=""  width="50px"/>                     
+                        <span>{{item.customer_name}}</span>
+                </td>
+                <td class="text-center">{{item.customer_propor}}</td>
+                <td class="text-center">{{item.customer_money}}</td>                    
+                <td class="text-center">{{item.customer_year}}</td>
+                <td class="text-center">{{item.customer_source}}</td>                   
+                <td class="text-center">{{item.customer_relev}}</td>                                            
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+
+<!-- 经营现状end -->
+<!-- 知识产权start -->
+<script id="shangbiao_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.shangbiao_num}}</td>
+                <td class="text-center"><img src="{{item.shangbiao_src}}" alt="" width="100px"/></td>
+                <td class="text-center">{{item.shangbiao_name}}</td>
+                <td class="text-center">{{item.shangbiao_status}}</td>
+                <td class="text-center">{{item.shangbiao_date}}</td>
+                <td class="text-center">{{item.shangbiao_no}}</td>
+                <td class="text-center">{{item.shangbiao_type}}</td>
+                <!-- <td class="text-center" style="color:#138BED;">详情</td>                                              -->
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="zhuanli_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.zhuanli_num}}</td>
+                <td class="text-center">{{item.zhuanli_type}}</td>
+                <td class="text-center">{{item.zhuanli_no}}</td>
+                <td class="text-center">{{item.zhuanli_date}}</td>
+                <td class="text-center">{{item.zhuanli_name}}</td>                                              
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="zhengshu_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.zhengshu_num}}</td>
+                <td class="text-center">{{item.zhengshu_type}}</td>
+                <td class="text-center">{{item.zhengshu_name}}</td>
+                <td class="text-center">{{item.zhengshu_no}}</td>
+                <td class="text-center">{{item.zhengshu_date}}</td>
+                <td class="text-center">{{item.zhengshu_deadline}}</td>                                             
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="zpzzq_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.zpzzq_num}}</td>
+                <td class="text-center">{{item.zpzzq_name}}</td>
+                <td class="text-center">{{item.zpzzq_first_date}}</td>
+                <td class="text-center">{{item.zpzzq_done_date}}</td>
+                <td class="text-center">{{item.zpzzq_no}}</td>
+                <td class="text-center">{{item.zpzzq_date}}</td>
+                <td class="text-center">{{item.zpzzq_type}}</td>                                                
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="rjzzq_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.rjzzq_num}}</td>
+                <td class="text-center">{{item.rjzzq_name}}</td>
+                <td class="text-center">{{item.rjzzq_version}}</td>
+                <td class="text-center">{{item.rjzzq_issue_date}}</td>
+                <td class="text-center">{{item.rjzzq_short_name}}</td>
+                <td class="text-center">{{item.rjzzq_no}}</td>
+                <td class="text-center">{{item.rjzzq_date}}</td>                                                
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="website_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.website_num}}</td>
+                <td class="text-center">{{item.website_name}}</td>
+                <td><!-- <a href="{{item.website_urls.join("")}}" style="display:block;">{{item.website_urls.join(",")}}</a> -->
+                    {{each item.website_urls item2}}
+                        <a href="{{item2}}" style="display:block;color:#138BED;" target="_blank">{{item2}}</a>
+                    {{/each}}
+                </td>
+                <td class="text-center">
+                    {{each item.website_domains item3}}
+                        <a href="javascript:;" style="display:block;">{{item3}}</a>
+                    {{/each}}
+                </td>
+                <td class="text-center">{{item.website_no}}</td>
+                <td class="text-center">{{item.website_date}}</td>                                                              
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+
+<!-- 知识产权end -->
+<!-- 企业发展start -->
+<script id="financing_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.financing_num}}</td>
+                <td class="text-center">{{item.financing_date}}</td>
+                <td class="text-center">{{item.financing_name}}</td>
+                <td class="text-center">{{item.financing_round}}</td>
+                <td class="text-center">{{item.financing_money}}</td>
+                <td class="text-center">{{item.financing_investor.join(",")}}</td>
+                <td class="text-center">{{item.financing_source}}</td>
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="investAgency_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.investAgency_num}}</td>
+                <td class="text-center">
+                    <span><img src="{{item.investAgency_src}}" alt="" width="100px"></span>
+                </td>
+                <td class="text-center">{{item.investAgency_name}}</td>
+                <td class="text-center">{{item.investAgency_data}}</td>
+                <td class="text-center">{{item.investAgency_region}}</td>
+                <td class="text-center">{{item.investAgency_text}}</td>
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="product_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.product_num}}</td>
+                <td class="text-center">
+                    <span><img src="{{item.product_src}}" alt="" width="100px"/></span>
+                </td>
+                <td class="text-center">{{item.product_name}}</td>
+                <td class="text-center">{{item.product_finance}}</td>
+                <td class="text-center">{{item.product_date}}</td>
+                <td class="text-center">{{item.product_region}}</td>
+                <td class="text-center">{{item.product_text}}</td>
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="member_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.member_num}}</td>
+                <td class="text-center">
+                    <span><img src="{{item.member_src}}" alt="" width="80px"/></span>
+                    {{item.member_name}}
+                </td>
+                <td class="text-center">{{item.member_position}}</td>
+                <td class="text-center">{{item.member_text}}</td>               
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="compatProduct_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.compatProduct_num}}</td>
+                <td class="text-center">
+                    <span><img src="{{item.compatProduct_src}}" alt="" width="80px"/></span>
+                </td>
+                <td class="text-center">{{item.compatProduct_name}}</td>
+                <td class="text-center">{{item.compatProduct_finance}}</td>
+                <td class="text-center">{{item.compatProduct_date}}</td>
+                <td class="text-center">{{item.compatProduct_region}}</td>
+                <td class="text-center">{{item.compatProduct_text}}</td>
+                <td class="text-center">{{item.compatProduct_com_name}}</td>
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<!-- 企业发展end -->
+<script id="touzi_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.touzi_num}}</td>
+                <td class="touzi_head"><img src="{{item.touzi_src}}" alt="" width="50px"/><span>{{item.touzi_name}}</span></td>
+                <td class="text-center">{{item.touzi_oper_name}}</td>
+                <td class="text-center">{{item.touzi_registcapi}}</td>
+                <td class="text-center">{{item.touzi_rc_ratio}}</td>
+                <td class="text-center">{{item.touzi_rounds}}</td>
+                <td class="text-center">{{item.touzi_date}}</td>
+                <td class="text-center" style="color:#52C41C;">{{item.touzi_status}}</td>                                               
+            </tr> 
+        {{/each}}
+    {{/if}}
+</script>
+<script id="subcom_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td class="text-center">{{item.subcom_num}}</td>
+                <td class="text-center"><img src="{{item.subcom_src}}" alt="" width="50px"/><span>{{item.subcom_name}}</span></td>
+                <td class="text-center">{{item.subcom_com}}</td>
+                <td class="text-center" style="color:#52C41C;">{{item.subcom_status}}</td>                                              
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+
+<script id="zhaopin_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr class="mt10 pb10 pt10">
+                <td>
+                    <p class="jobName pt10 p120">{{item.jobName}}</p>
+                    <p class="jobSalary pt10 p120 fc">{{item.salary}}</p>
+                    <p class="jobNeedPeople pt10 pb10 p120">人数：<span>{{item.needPeople}}</span>人</p>
+                </td>
+                <td>
+                    <p class="jobNameCn pt10 p120">{{item.nameCn}}</p>
+                    <p class=" fc pt10 p120">
+                        <span class="jobAddress">{{item.address}}</span> | 
+                        <span class="jobWorkingExp">{{item.workingExp}}</span> | 
+                        <span class="jobEduLevel">{{item.eduLevel}}</span>
+                    </p>
+                    <p class="jobUpdateTime pt10 pb10 p120">{{item.update_time}}</p>
+                </td>
+            </tr> 
+        {{/each}}
+    
+    {{/if}}
+</script>
+<script id="key_personnel_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr>
+                <td class="text-center">{{item.mainmember_num}}</td>
+                <td>
+
+                    <div class="key-name">
+                        <div class="name" style="float:left;">
+                            <span>{{item.mainmember_name.substr(0,1)}}</span>
+                        </div>
+                        <div class="dib mt10">{{item.mainmember_name}}</div>
+                    </div>
+                </td>
+                <td class="text-center">{{item.mainmember_duty}}</td>
+            </tr>
+        {{/each}}
+    
+    {{/if}}
+</script>
+
+<script id="shareholder_info_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr>
+                <td class="text-center">{{item.partners_num}}</td>
+                <td>
+                    <div class="company-logo">
+                        <div class="company-name">
+            
+                            <span>{{item.partners_name.substr(0,1)}}</span>
+                            <div class="dib mt5">{{item.partners_name}}<!-- <em>大股东</em> --></div>
+                        </div>
+                        <!-- <a href="javascript:;">他有34家公司&gt;</a> -->
+                    </div>
+                </td>
+                <td class="text-center">{{item.partners_sr}}</td>
+                <td class="text-center">{{item.partners_scc}}万元</td>
+                <td class="text-center">{{item.partners_date}}</td>
+            </tr>
+         {{/each}}
+        
+    {{/if}}
+</script>
+<!-- 变更 -->
+<script id="alteration_record_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr>
+                <td class="text-center">{{item.change_num}}</td>
+                <td class="text-center">{{item.change_date}}</td>
+                <td class="text-center">{{item.change_project}}</td>
+                <td class="text-center">{{item.change_front}}</td>
+                <td class="text-center">
+                    <div class="orange">{{item.change_back}}</div>
+                </td>
+            </tr>
+         {{/each}}
+    
+    {{/if}}
+</script>
+
+<script id="global_sourse_tpl" type="text/html">
+    <tr>
+        <td>更新时间</td>
+        <td>{{@ update_time | emptys}}</td>
+        <td>主页地址</td>
+        <td>{{@ url | emptys}}</td>
+    </tr>
+    <tr>
+        <td>公司英文名称</td>
+        <td>{{@ nameEg | emptys}}</td>
+        <td>公司中文名称</td>
+        <td>{{@ nameCn | emptys}}</td>
+    </tr>
+    <tr>
+        <td>网站联系人</td>
+        <td>{{@ linkman | emptys}}</td>
+        <td>联系人职位</td>
+        <td>{{@ job_Title | emptys}}</td>
+    </tr>
+    <tr>
+        <td>公司地址</td>
+        <td>{{@ Address | emptys}}</td>
+        <td>城市</td>
+        <td>{{@ City | emptys}}</td>
+    </tr>
+    <tr>
+        <td>国家地区</td>
+        <td>{{@ Region | emptys}}</td>
+        <td>身份</td>
+        <td>{{@ Province | emptys}}</td>
+    </tr>
+    <tr>
+        <td>邮政编码</td>
+        <td>{{@ Zip | emptys}}</td>
+   
+        <td>公司电话</td>
+        <td>{{@ Phone | emptys}}</td>
+    </tr>
+    <tr>    
+        <td>公司传真</td>
+        <td>{{@ Fax | emptys}}</td>
+
+        <td>电话</td>
+        <td>{{@ Mobile | emptys}}</td>
+    </tr>
+    <tr>
+        <td>工商注册号</td>
+        <td>{{@ Registration_ID | emptys}}</td>
+
+        <td>营业执照地址</td>
+        <td>{{@ Cn_Address | emptys}}</td>
+    </tr>
+    <tr>
+        <td>业务类型</td>
+        <td>{{@ Business_Type | emptys}}</td>
+
+        <td>进出口市场</td>
+        <td>{{@ Past_Export_Markets | emptys}}</td>
+    </tr>
+    <tr>
+        <td>成立年份</td>
+        <td>{{@ Year_Established | emptys}}</td>
+
+        <td>公司总人数</td>
+        <td>{{@ N_of_T_Staff | emptys}}</td>
+    </tr>
+    <tr>
+        <td>研发人员数量</td>
+        <td>{{@ N_of_RD_Staff | emptys}}</td>
+
+        <td>工程师人数</td>
+        <td>{{@ No_of_Engineers | emptys}}</td>
+    </tr>
+    <tr>
+        <td>年营业额</td>
+        <td>{{@ No_of_Engineers | emptys}}</td>
+
+        <td>注册资本</td>
+        <td>{{@ Total_Capitalization | emptys}}</td>
+    </tr>
+    <tr>
+        <td>品牌名称</td>
+        <td>{{@ Brand_Names | emptys}}</td>
+
+        <td>出口百分比</td>
+        <td>{{@ Export_Percentage | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主要优势</td>
+        <td>{{@ P_C_Advantages | emptys}}</td>
+
+        <td>银行明细</td>
+        <td>{{@ Bank_Details | emptys}}</td>
+    </tr>
+    <tr>
+        <td>月产能</td>
+        <td>{{@ Monthly_capacity | emptys}}</td>
+
+        <td>OEM服务</td>
+        <td>{{@ OEM_Services | emptys}}</td>
+    </tr>
+    <tr>
+        <td>工厂所有权</td>
+        <td>{{@ Factory_Ownership | emptys}}</td>
+
+        <td>工厂面积</td>
+        <td>{{@ F_S_in_S_Meters | emptys}}</td>
+    </tr>
+    <tr>
+        <td>制造设备投资额</td>
+        <td>{{@ In_on_M_Equipment | emptys}}</td>
+
+        <td>质量控制</td>
+        <td>{{@ QC_Responsibility | emptys}}</td>
+    </tr>
+    <tr>
+        <td>工厂中的机器类型</td>
+            <td>{{@ T_of_PM_in_Factory | emptys}}</td>
+
+        <td>主要客户</td>
+        <td>{{@ Major_Customers | emptys}}</td>
+    </tr>
+    <tr>
+        <td>付款方式</td>
+        <td>{{@ Payment_Method | emptys}}</td>
+
+        <td>生产线</td>
+        <td>{{@ No_of_Produ_Lines | emptys}}</td>
+    </tr>
+    <tr>
+        <td>公司简介</td>
+        <td><div class="ell" title="{{@ brief}}">{{@ brief | emptys}}</div></td>
+    </tr>
+</script>
+<script id="made_china_tpl" type="text/html">
+    <tr>
+        <td>更新时间</td>
+        <td>{{@ update_time | emptys}}</td>
+        <td>联系人头像</td>
+        <td><div><img data-src="{{@ linkman_img}}" src="assets/images/no_user.png"></div></td>
+    </tr>
+    <tr>
+        <td>主页地址</td>
+        <td>{{@ url | emptys}}</td>
+        <td>公司英文名称</td>
+        <td>{{@ nameEg | emptys}}</td>
+    </tr>
+    <tr>
+        <td>联系方式1</td>
+        <td>{{@ Mobile_Phone | emptys}}</td>
+        <td>联系方式2</td>
+        <td>{{@ Telephone | emptys}}</td>
+    </tr>
+    <tr>
+        <td>公司地址</td>
+        <td>{{@ Address | emptys}}</td>
+        <td>业务类型</td>
+        <td>{{@ Business_Type | emptys}}</td>
+    </tr>
+    <tr>
+        <td>年产值</td>
+        <td>{{@ Annual_Output_Value | emptys}}</td>
+        <td>国际商业条款</td>
+        <td>{{@ International_Commercial_Terms | emptys}}</td>
+    </tr>
+    <tr>
+        <td>OEM ODM可用性</td>
+        <td>{{@ OEM_ODM_Availability | emptys}}</td>
+        <td>在职员工人数</td>
+        <td>{{@ Number_of_Employees | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主要产品</td>
+        <td>{{@ Main_Products | emptys}}</td>
+        <td>生产线数量</td>
+        <td>{{@ No_of_Production_Lines | emptys}}</td>
+    </tr>
+    <tr>
+        <td>平均交货时间</td>
+        <td>{{@ Lead | emptys}}</td>
+        <td>公司头像</td>
+        <td><div><img data-src="{{@ com_img}}" src="assets/images/no_user.png"></div></td>
+    </tr>
+    <tr>
+        <td>成立年份</td>
+        < <td>{{@ Year_of_Establishment | emptys}}</td>
+        <td>注册账户</td>
+        <td>{{@ Account_Registered_in | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主要市场</td>
+        <td>{{@ Main_Markets | emptys}}</td>
+        <td>最后登录时间</td>
+        <td>{{@ Last_Login_Date | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主页截图</td>
+        <td><div><img data-src="{{@ img_page}}" src="assets/images/no_user.png"></div></td>
+        <td>公司简介</td>
+        <td><div class="ell" title="{{@ brief}}">{{@ brief | emptys}}</div></td>
+    </tr>
+    <tr>
+        <td>出口百分比</td>
+        <td>{{@ Export_Percentage | emptys}}</td>
+        <td>公司域名</td>
+        <td>{{@ website | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主营产品竞争数截图</td>
+        <td><div><img data-src="{{@ img_search}}" src="assets/images/no_user.png"></div></td>
+        <td>业务范围</td>
+        <td>{{@ Business_Range | emptys}}</td>
+    </tr>
+    <tr>
+        <td>年出口收入</td>
+        <td>{{@ Annual_Export_Revenue | emptys}}</td>
+        <td>出口年份</td>
+        <td>{{@ Export_Year | emptys}}</td>
+    </tr>
+    <tr>
+        <td>外贸人员数量</td>
+        <td>{{@ Number_of_Foreign_Trading_Staff | emptys}}</td>
+        <td>管理体系认证</td>
+        <td>{{@ Management_System_Certification | emptys}}</td>
+    </tr>
+    <tr>
+        <td>联系人</td>
+        <td>{{@ linkman | emptys}}</td>
+        <td>主营产品竞争数</td>
+        <td>{{@ number_com | emptys}}</td>
+    </tr>
+    <tr>
+        <td>注册资本</td>
+        <td>{{@ Registered_Capital | emptys}}</td>
+        <td>付款条件</td>
+        <td>{{@ Terms_of_Payment | emptys}}</td>
+    </tr>
+    <tr>
+        <td>对外贸易许可证</td>
+        <td>{{@ License_Photo | emptys}}</td>
+        <td>研发人员数量</td>
+         <td>{{@ No_of_D_Staff | emptys}}</td>
+    </tr>
+    <tr>
+        <td>联系人职位</td>
+         <td>{{@ linkman_Title | emptys}}</td>
+        <td>工厂地址</td>
+         <td>{{@ Factory_Address | emptys}}</td>
+    </tr>
+    <tr>
+        <td>年收入</td>
+        <td>{{@ Annual_Revenue | emptys}}</td>
+        <td>最近港口</td>
+        <td>{{@ Nearest_Port | emptys}}</td>
+    </tr>
+    <tr>
+        <td>厂房面积</td>
+        <td>{{@ AddrPlant_Areaess | emptys}}</td>
+        <td>传真</td>
+        <td>{{@ Fax | emptys}}</td>
+    </tr>
+    <tr>
+        <td>研发能力</td>
+        <td>{{@ R_D_Capacity | emptys}}</td>
+    </tr>
+</script>
+<script id="relat-info" type="text/html">
+    <tr>
+        <td>注册号</td>
+        <td>{{@ No | emptys}}</td>
+        <td>注册资本</td>
+        <td>{{@ RegistCapi | emptys}}</td>
+    </tr>
+    <tr>
+        <td>成立时间</td>
+        <td>{{@ StartDate | emptys}}</td>
+        <td>法定代表人</td>
+        <td>{{@ OperName | emptys}}</td>
+    </tr>
+    <tr>
+        <td>实收资本</td>
+        <td>{{@ cont_capital | emptys}}</td>
+        <td>国家/地区</td>
+        <td>{{@ Country | emptys}}</td>
+    </tr>
+    <tr>
+        <td>洲</td>
+        <td>{{@ Province | emptys}}</td>
+        <td>所属行业</td>
+        <td>{{@ Industry | emptys}}</td>
+    </tr>
+    <tr>
+        <td>企业类型</td>
+        <td>{{@ EconKind | emptys}}</td>
+        <td>行业规模</td>
+        <td>{{@ staffSize | emptys}}</td>
+    </tr> 
+    <tr>
+        <td>税号</td>
+        <td>{{@ reg_number | emptys}}</td>
+        <td>企业现状</td>
+        <td>{{@ Status | emptys}}</td>
+    </tr>
+    <tr>
+        <td>注册地址</td>
+        <td>{{@ Address | emptys}}</td>
+        <td>经营范围</td>
+        <td>{{@ Scope | emptys}}</td>
+    </tr>
+</script>
+<script id="Alibaba" type="text/html">
+    <tr>
+        <td>更新时间</td>
+        <td>{{@ update_time | emptys}}</td>
+        <td>英文名称</td>
+        <td>{{@ Company_name | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主页地址</td>
+        <td><a href="{{@ Alibaba_url | emptys}}">点击这里</a></td>
+        <td>所在城市</td>
+        <td>{{@ accountCity | emptys}}</td>
+    </tr>
+    <tr>
+        <td>联系人</td>
+        <td>{{@ accountDisplayName | emptys}}</td>
+        <td>联系地址</td>
+        <td>{{@ accountAddress | emptys}}</td>
+    </tr>
+    <tr>
+        <td>邮政编码</td>
+        <td>{{@ accountZip | emptys}}</td>
+        <td>所在国家</td>
+        <td>{{@ accountCountry | emptys}}</td>
+    </tr>
+    <tr>
+        <td>传真</td>
+        <td>{{@ fax | emptys}}</td>
+        <td>职称</td>
+        <td>{{@ accountJobTitle | emptys}}</td>
+    </tr>
+    <tr>
+        <td>所在地区</td>
+        <td>{{@ accountProvince | emptys}}</td>
+        <td>联系电话</td>
+        <td>{{@ telephone | emptys}}</td>
+    </tr>
+    <tr>
+        <td>中文名称</td>
+        <td>{{@ Registered_name | emptys}}</td>
+        <td>工商注册号</td>
+        <td>{{@ Registration_No | emptys}}</td>
+    </tr>
+    <tr>
+        <td>注册资金</td>
+        <td>{{@ Registered_Capital | emptys}}</td>
+        <td>注册地址</td>
+        <td>{{@ Registered_address | emptys}}</td>
+    </tr>
+    <tr>
+        <td>成立时间</td>
+        <td>{{@ year_established | emptys}}</td>
+        <td>法人</td>
+        <td>{{@ Legal_Representative | emptys}}</td>
+    </tr>
+    <tr>
+        <td>法律形式</td>
+        <td>{{@ Legal_Form | emptys}}</td>
+        <td>经营地址</td>
+        <td>{{@ Operational_Address | emptys}}</td>
+    </tr>
+    <tr>
+        <td>申请人</td>
+        <td>{{@ linkman | emptys}}</td>
+        <td>申请人职称</td>
+        <td>{{@ Job_Title | emptys}}</td>
+    </tr>
+    <tr>
+        <td>所在部门</td>
+        <td>{{@ Department | emptys}}</td>
+        <td>业务类型</td>
+        <td>{{@ business_type | emptys}}</td>
+    </tr>
+    <tr>
+        <td>地址</td>
+        <td>{{@ location | emptys}}</td>
+        <td>主营产品</td>
+        <td>{{@ main_products | emptys}}</td>
+    </tr>
+    <tr>
+        <td>公司规模</td>
+        <td>{{@ total_employees | emptys}}</td>
+        <td>年收入</td>
+        <td>{{@ total_annual_revenue | emptys}}</td>
+    </tr>
+    <tr>
+        <td>产品认证</td>
+        <td>{{@ ProductCertifications | emptys}}</td>
+        <td>资质证书</td>
+        <td>{{@ iso_certification | emptys}}</td>
+    </tr>
+    <tr>
+        <td>专利</td>
+        <td>{{@ Patents | emptys}}</td>
+        <td>商标</td>
+        <td>{{@ Trademarks | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主要市场</td>
+        <td>{{@ company_mainMarket | emptys}}</td>
+        <td>所有权</td>
+        <td>{{@ ownership | emptys}}</td>
+    </tr>
+    <tr>
+        <td>公司简介</td>
+        <td>{{@ brief | emptys}}</td>
+        <td>移动电话</td>
+        <td>{{@ mobile_phone | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主页截图</td>
+        <td>
+            <a class="images-show" href="{{@ img_page}}" target="_Blank"><img src="{{@ img_page}}" alt=""></a>
+        </td>
+        <td>主营产品竞争数截图</td>
+        <td>
+            <a class="images-show" href="{{@ img_search}}" target="_Blank"><img src="{{@ img_search}}" alt=""></a>
+        </td>
+    </tr>
+    <tr>
+        <td>网站年限</td>
+        <td>{{@ website_year | emptys}}</td>
+        <td>网站级别</td>
+        <td>{{@ grade_level | emptys}}</td>
+    </tr>
+    <tr>
+        <td>主营产品竞争数</td>
+        <td>{{@ number_com | emptys}}</td>
+        <td></td>
+        <td></td>
+    </tr>
+</script>
+<script src='assets/page/detail/detail.js'></script>
+<script type="text/javascript">
+    
+    var pId = getQueryString("dt_id");
+
+    function getPageH(){
+        var mainH = $(".detail-page-container").height();
+        $(".cardListAll").height(mainH-70);
+    }
+
+    template.defaults.imports.emptys = function (str) {
+        var val = ""
+        if(str == "" || str == undefined){
+            val = "--"
+        }else{
+            val = str
+        }
+        return val
+    }
+
+</script>
+</html>

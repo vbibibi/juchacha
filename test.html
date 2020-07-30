@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    </head>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/page/list/list.css">
+    <style type="text/css">
+        .zdy{position:relative;}
+        .custom_box{position:absolute;background:#fff;z-index: 99;}
+    }
+    </style>
+
+    <body>
+        <div class="">
+        <div class="zdy"><span>click</span></div>
+        </div>
+
+        <div class="url">changeurl</div>
+    
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script>
+            // uuid 生成
+            const UUIDGeneratorBrowser = () =>
+              ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))).toString(16)
+            );
+            console.log(UUIDGeneratorBrowser())
+        // $('.url').click(function () {
+        //     var url = window.location.href;
+        //     var stateObject = {};
+        //     var title = "修改地址";
+        //     var newUrl = url.substr(0,url.indexOf("?"))+'?Name=2';
+        //     //修改地址栏中的地址
+        //     history.pushState(stateObject, title, newUrl);
+        //     console.info(history.length);
+        // });
+
+        // var arr1 = [{'id':1,'value':"ss"},{'id':2,'value':"ss"},{'id':3,'value':"ss"}]
+
+        // for(var i in arr1){
+        //     console.log(i.id)
+        //     console.log(arr1[i].id)
+        // }
+
+            // $(".zdy").on("click",function(e){   
+            //     e.stopPropagation();                      
+            //     // var self = $(this).find(".custom_box");
+            //     if($(this).hasClass('on')){                    
+            //         $(this).removeClass('on');
+            //         $(this).find(".custom_box").remove();
+            //     }else{  
+            //         getCusBox(this);  
+            //         // $(".custom_box").removeClass('on');
+            //         $(this).addClass('on')               
+            //     }
+            // })
+            // $(".custom_box").click(function(e){
+            //     e.stopPropagation()
+            // })
+            // // 获取自定义输入框
+            // function getCusBox(obj){
+            //     console.log(obj)
+            //      var cushtml = '<div class="custom_box">'+                   
+            //                     '<div class="num_box fl"><input type="text" id="minN" value="最小"/></div>'+
+            //                      '<span>━</span>'+
+            //                     '<div class="num_box fl"><input type="text" id="maxN" value="最大"/></div>'+
+            //                     '<div class="custom_btn">'+
+            //                         '<span class="btn btn-default remove_btn">清空</span>'+
+            //                         '<span class="btn btn-default submit_btn">确认</span>'+
+            //                     '</div>'+
+            //                  '</div>';
+            //     $(obj).parent().append(cushtml);
+            // }
+            // function to calculate local time 
+            // in a different city 
+            // given the city's UTC offset 
+            // function calcTime(city, offset,date) { 
+            //     // d = '2019-08-23 18:00:00'; 
+            //     // create Date object for current location 
+            //     // d = new Date(); 
+            //     // d = Thu Aug 23 2019 15:00:00 GMT-1000;
+            //     // b +8
+            //     // m -10
+            //     d = date;
+            //     var beijin = 8;
+            //     if(offset > 0){
+            //         var sc = 8 - offset;
+
+            //         // return  "The beijin time in is "
+            //     }else{
+            //         var sc = 8 + (-offset)
+            //     }
+            //    console.log(sc)
+            //    // return "The beijin time in is " + date + 1; 
+            //     // convert to msec 
+            //     // add local time zone offset 
+            //     // get UTC time in msec 
+            //     // utc = d.getTime() + (d.getTimezoneOffset() * 60000); 
+            //     // create new Date object for different city 
+            //     // using supplied offset 
+            //     // nd = new Date(utc + (3600000*offset)); 
+            //     // return time as a string 
+            //     // return "The local time in " + city + " is " + nd.toLocaleString(); 
+            // } 
+            // // // get Bombay time 
+            // // alert(calcTime('Bombay', '+5.5')); 
+            // // // get Singapore time 
+            // // alert(calcTime('Singapore', '+8')); 
+            // // // get London time 
+            // // alert(calcTime('London', '+1'));
+            // // alert(calcTime('BeiJin', '+8'));  
+            // console.log(calcTime('mx', '5','2019-08-23 15:41:10:'));
+            
+         //得到标准时区的时间
+            // function getLocalTime(i) {
+            //     //参数i为时区值数字，比如北京为东八区则输入8,西5输入-5,现默认东八区北京时间
+            //     var i=i?parseFloat(i):8; 
+            //     //得到本地时间
+            //     var d = new Date();
+            //     //得到1970年一月一日到现在的秒数
+            //     var local = d.getTime();
+            //     //本地时间与GMT时间的时间偏移差
+            //     var offset = d.getTimezoneOffset() * 60000;
+            //     //得到现在的格林尼治时间
+            //     var utcTime = local + offset;
+            //     return new Date(utcTime + 3600000 * i);
+            // }
+
+            // //转换服务器时区时间
+            // function formatTime(t,utc){
+            //     //t传入的时间参数,utc传入的时区参数
+            //     if(!t) return;
+            //     //获取本地时间
+            //     var d=new Date();
+            //     //获得本地时区
+            //     utc=utc?parseFloat(utc):d.getTimezoneOffset()/60;
+            //     //格式化传入时间
+            //     var time=new Date(t);
+            //     //转换传入时间为本地时间（默认传入服务器时间为东八区时间）
+            //     time.setHours(time.getHours()+(utc-8));
+            //     //输出时间
+            //     var yy=time.getFullYear();
+            //     var MM=time.getMonth()+1;
+            //     MM=MM<10?'0'+MM:MM;
+            //     var dd=time.getDate();
+            //     dd=dd<10?'0'+dd:dd;
+            //     var hh=time.getHours();
+            //     hh=hh<10?'0'+hh:hh;
+            //     var mm=time.getMinutes();
+            //     mm=mm<10?'0'+mm:mm;
+            //     var ss=time.getSeconds();
+            //     ss=ss<10?'0'+ss:ss;
+            //     var date=yy+'-'+MM+'-'+dd+' '+hh+':'+mm+':'+ss;
+            //     console.log(date);
+            //     return date;
+            // }
+            // formatTime('2019-08-23 15:30',5);
+
+// <<<<<<< HEAD
+
+// =======
+//          var frame = document.getElementById('mainContent')
+//          window.addEventListener('message', function(e){
+//             frame.style.height = e.data.height+'px'
+//             // frame.style.width = e.data.width+'px'
+//          })
+         
+// >>>>>>> dev
+
+            // function addDate(date,days){ 
+            //     var d=new Date(date); 
+            //     console.log(d)
+            //     d.setDate(d.getDate()+days); 
+            //     console.log(d)
+            //     var m=d.getMonth()+1; 
+            //     console.log(d.getFullYear()+'-'+m+'-'+d.getDate())
+            //     return d.getFullYear()+'-'+m+'-'+d.getDate(); 
+            // }
+            // function addDate1(sDate1,sDate2){ 
+            //     // 返回相差的毫秒数
+            //     var time1 = Date.parse(new Date(sDate1));
+            //     var time2 = Date.parse(new Date(sDate2));
+            //     var nDays = Math.abs(parseInt((time2 - time1)/1000/3600/24));
+            //     console.log(nDays);
+            //     return nDays;
+            // }
+            // addDate('2019-08-23',200);
+            // addDate1('2019-08-23','2020-03-10');
+            // 
+            // 
+            // function show(startTime,endTime){
+            //     var getDate=function(str){
+            //         var tempDate=new Date();
+            //         var list=str.split("-");
+            //         tempDate.setFullYear(list[0]);
+            //         tempDate.setMonth(list[1]-1);
+            //         tempDate.setDate(list[2]);
+            //         return tempDate;
+            //     }
+            //     var date1=getDate(startTime);
+            //     var date2=getDate(endTime);
+            //     if(date1>date2){
+            //         var tempDate=date1;
+            //         date1=date2;
+            //         date2=tempDate;
+            //     }
+            //     date1.setDate(date1.getDate()+1);
+            //     var dates=[startTime],id=1;
+            //     while(!(date1.getFullYear()==date2.getFullYear()&&date1.getMonth()==date2.getMonth()&&date1.getDate()==date2.getDate())){
+            //     dates[id]=date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
+            //     id++;
+            //     date1.setDate(date1.getDate()+1);
+            //     }
+            //     dates[dates.length]=endTime;
+            //     return dates;
+            // };
+            // alert(show("2014-08-25","2014-09-10"));
+        </script>
+    </body>
+</html>

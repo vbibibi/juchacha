@@ -1,0 +1,31 @@
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{vertical-align: middle;}
+.fc{color:#999;}
+.cardBox{background:#fff;padding:10px 10px;height:100%;}
+.cardTitle {padding:14px 0;}
+.cardTitle span:before{content:"";background:#187CFF;height:20px;width:6px;float:left;}
+.cardListAll{overflow: auto;}
+.cardList .cardTel{height:50px;line-height: 50px;color:#0F77FF;border-bottom:1px solid #f0f0f0;}
+.cardList .cardTel:before{content:"";width:26px;height:26px;float:left;margin-top:12px;margin-right:10px;background:url(../images/person.png) no-repeat;}
+.cardList.cardTopIcon .cardTel:before{background-image:url(../images/top.png);margin-top:10px;}
+.cardList .cardTel .go-top{width:40px;height:22px;line-height:22px;background: #41BFBF;color:#fff;margin-top:14px;cursor:pointer;display:none;}
+.cardList:hover .cardTel .go-top{display:block;}
+.cardList{border:1px solid #f0f0f0;height:248px;}
+.cardList .form-group{margin:0!important;}
+.cardList .form-group .cardAdress{height:44px;overflow:hidden;}
+.cardList .form-group .form-control-static{padding-left:10px;}
+.cardSource{padding:0 5px;height:22px;padding:0;}
+.cardSource a{padding:0px 10px;height:22px;background:#D0DDEA;border-radius: 4px;}
+.cardSource .btnPage{background:#fff;}
+
+#made_china tr{padding-left:20px; border-bottom:1px solid #f0f0f0;}
+#made_china tr p{padding-left:20px;}
+#made_china tr:last-child{
+    border:0;
+}
+
+.carouselBox {position:relative;}
+.abtn{position:absolute;right:10px;bottom:0;}
+.abtn a{padding:0 5px;}
+
+/*detail*/
+.table_height{max-height:540px;overflow:auto;}

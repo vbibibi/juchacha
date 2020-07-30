@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>分页设置</title>
+        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="assets/iconfont/iconfont.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-table.min.css" />
+        <link rel="stylesheet" href="assets/css/datepicker.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/page/list/list.css">
+        <style type="text/css">
+        .wrap{width:1000px;margin:20px auto;}
+        #pageList {
+            margin-top: 50px;
+        }
+        #pageList ul li{
+
+        }
+        #pageList ul li span {
+            cursor: pointer;
+            float:none;
+        }
+
+        #pageList ul li.disabled {
+            pointer-events: none;
+        }
+
+        #pageList ul li.active {
+            pointer-events: none;
+        }
+
+        #pageList ul li.active span {
+            background-color: #1890FF;
+            border-color: #1890FF;
+        }
+
+        .pagination>li>a,
+        .pagination>li>span {
+            padding: 8px 14px;
+            color: #1890FF;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <div class="alteration-record" style="margin-bottom:30px;" id="alteration-record">
+                <h5 class="fwb mb10 ml10">变更记录</h5>
+                <div class="table_height">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="5%">序号</th>
+                                <th class="text-center" width="10%">变更日期</th>
+                                <th class="text-center" width="30%">变更项目</th>
+                                <th class="text-center" width="30%">变更前</th>
+                                <th class="text-center" width="35%">变更后</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="pageList">
+
+                </div>
+            </div>
+        </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/template-web.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootstrap-table.min.js"></script>
+<!--     <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/bootstrap-paginator.min.js"></script> -->
+     <script src="assets/js/function.js"></script>
+    <script id="alteration_record_tpl" type="text/html">
+    {{if data.length>0}}
+        {{each data item key}}
+            <tr>
+                <td class="text-center">{{item.change_num}}</td>
+                <td class="text-center">{{item.change_date}}</td>
+                <td class="text-center">{{item.change_project}}</td>
+                <td class="text-center">{{item.change_front}}</td>
+                <td class="text-center">
+                    <div class="orange">{{item.change_back}}</div>
+                </td>
+            </tr>
+         {{/each}}
+    {{/if}}
+</script>
+    <script type="text/javascript">
+        var num = 1;
+        function render(pnum){
+            $.ajax({
+                url:'http://juchacha.netools.cn:8383/juchacha_base',
+                type:'POST',
+                dataType: "jsonp",
+                jsonpCallback: "get_json",
+                data:{
+                    KeyNo: "a0c5a836dd16ad7c411a3d3ebe0781ae",
+                    appId: "7309be9d670711e99c58525400255775",
+                    sign: "3CEB211A6395C6E95A1704A6AF7113DC",
+                    timestamp: "1566869578000"
+                },
+                success:function (res) {
+                    var data = res.data;
+                    var changeLen = data.changelist.length;
+                    console.log(pnum)
+                    var afterLen = changeLen - (pnum-1)*10;
+                    console.log(afterLen);
+                    if(afterLen < 10 ){
+                        var showList = data.changelist.slice((pnum-1)*10);
+                    }else{
+                        var showList = data.changelist.slice((pnum-1)*10,10);
+                    }
+                    var temp = template("alteration_record_tpl",{data:showList});
+                    $(".alteration-record tbody").html(temp);
+                    if(data.changelist.length > 10){
+                        var totalnum = Math.ceil(changeLen / 10);
+                        pageNate({
+                            total:changeLen,
+                            pageSize:10,
+                            pageNumber:pnum,
+                            name:$('#pageList'),
+                            callback:function(pageNumber,pageSize){
+                            }
+                        })
+                    }
+                },
+                error:function (err) {
+                    console.log(res)
+                }
+            });
+        }
+        render(num)
+        $("#pageList").on("click","li",function(){
+            if(!$(this).hasClass('prev') && !$(this).hasClass('next')){
+                num = parseInt($(this).find("span").text())
+                render(num)
+            } 
+        })
+        $("#pageList").on("click",".next",function(){
+            num = num+1;
+            render(num)
+        })
+        $("#pageList").on("click",".prev",function(){
+            num = num-1;
+            render(num)
+        })
+        
+        // 分页
+        // var pageList = {
+        //     prev:$('#pageList .prev'),
+        //     next:$('#pageList .next'),
+        //     parent:$('#pageList'),
+        //     pages:1,
+        //     total:0,
+        //     len:0,
+        //     init:function(pages,total,len,callback){
+        //         this.pages = pages
+        //         this.total = Math.ceil(total/10);
+        //         this.len = len
+        //         if (total<10) {
+        //             this.prev.addClass('disabled')
+        //             this.next.addClass('disabled')
+        //         }else{
+        //             this.prev.removeClass('disabled')
+        //             this.next.removeClass('disabled')
+        //         }
+        //         if (Math.ceil(total/10)==pages) this.next.addClass('disabled')
+        //         if (pages==1) {this.prev.addClass('disabled')}
+        //         if (callback) {
+        //             this.prevBtn(callback)
+        //             this.nextBtn(callback)
+        //         }
+        //     },
+        //     prevBtn:function(callback){
+        //         var self = this;
+        //         this.parent.on("click",".prev",function(){
+        //             console.log(self.pages)
+        //             if (self.pages>0 && self.pages !=1) {
+        //                 console.log(self.pages)
+        //                 self.pages -=1;
+        //                 // num = self.pages;
+        //                 callback(self.pages)
+        //             }
+        //         })
+        //     },
+        //     nextBtn:function(callback){
+        //         console.log(this.pages)
+        //         this.parent.on("click",".next",function(){
+        //             console.log(this.pages)
+        //             if (self.pages>0) {
+        //                 self.pages +=1;
+        //                 // num = self.pages;
+        //                 // console.log(self.pages)
+        //                 callback(self.pages)
+        //             }
+        //         })
+        //     }
+        // }
+        // function setPage(pageCurrent, pageSum, callback) {
+        //     var element = $('#pageList');//对应下面ul的ID  
+        //     var options = {  
+        //         bootstrapMajorVersion:1,  
+        //         currentPage: pageCurrent,//当前页面  
+        //         numberOfPages: 10,//一页显示几个按钮（在ul里面生成5个li）  
+        //         totalPages:pageSum //总页数  
+        //     }  
+        //     element.bootstrapPaginator(options);  
+        //     // $("#pageList").bootstrapPaginator({
+        //     //     //设置版本号
+        //     //     bootstrapMajorVersion:1,
+        //     //     // 显示第几页
+        //     //     currentPage: pageCurrent,
+        //     //     // 总页数
+        //     //     totalPages: pageSum,
+        //     //     //当单击操作按钮的时候, 执行该函数, 调用ajax渲染页面
+        //     //     onPageClicked: function (event,originalEvent,type,page) {
+        //     //         // 把当前点击的页码赋值给currentPage, 调用ajax,渲染页面
+        //     //         currentPage = page
+        //     //         callback && callback()
+        //     //     }
+        //     // })
+        // }
+
+    </script>
+    </body>
+</html>
